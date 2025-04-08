@@ -37,12 +37,13 @@
     </form>
 {/if}
 
-<script>
+<script lang="ts">
     import { onMount } from 'svelte';
+    import type { SelectUser } from '$lib/schema';
 
 
-    let users = [];
-    let selectedUser = null;
+    let users: SelectUser[] = [];
+    let selectedUser: SelectUser | null = null;
 
     async function fetchUsers() {
         try {
@@ -54,7 +55,7 @@
         }
     }
 
-    function selectUser(user) {
+    function selectUser(user: SelectUser) {
         selectedUser = { ...user }; // Clone user object to avoid direct mutation
     }
 

@@ -12,10 +12,10 @@ export const actions = {
     const email = formData.get("email");
 
     try {
-      await createUser({ name, age, email });
+      await createUser({ name: name as string, age, email: email as string });
       throw redirect(303, "/");
     } catch (error) {
-      return fail(400, { error: error.message });
+      return fail(400, { error: (error as Error).message });
     }
   },
 
@@ -27,10 +27,10 @@ export const actions = {
     const email = formData.get("email");
 
     try {
-      await updateUser(id, name, age, email);
+      await updateUser(id, name as string, age, email as string);
       throw redirect(303, "/");
     } catch (error) {
-      return fail(400, { error: error.message });
+      return fail(400, { error: (error as Error).message });
     }
   },
 
@@ -42,7 +42,7 @@ export const actions = {
       await deleteUser(id);
       throw redirect(303, "/");
     } catch (error) {
-      return fail(400, { error: error.message });
+      return fail(400, { error: (error as Error).message });
     }
   },
 };
